@@ -3,10 +3,9 @@
 		A build file for M4. No clue what I'm doing
 	</description>
 	<target name = "init">
-		<property name="src" location="src"/>
 		<property name="build" location="build"/>
-		<property name="bin" location="${build}/bin"/>
-		<property name="jar" location="${build}/jar"/>
+		<property name="bin" location="build/bin"/>
+		<property name="jar" location="build/jar"/>
 		<property name="library" location="src/edu.gatech.oad.antlab.lib"/>
 		<property name="person" value="src/edu.gatech.oad.antlab.person" />
 		<property name="pkg1" value="src/edu.gatech.oad.antlab1.pkg1" />
@@ -15,14 +14,14 @@
 		
 	
 	<target name="prepare">
-		<mkdir dir="${src}"/>
-		<mkdir dir="${build}"/>
-		<mkdir dir="${bin}"/>
-		<mkdir dir="${jar}"/>
+		<mkdir dir="src"/>
+		<mkdir dir="build"/>
+		<mkdir dir="build/bin"/>
+		<mkdir dir="build/jar"/>
 	</target>	
 	
 	<target name="compile" depends="prepare">
-		<javac srcdir="${src}" destdir="${bin}" classpath="${library}" classpathref="classpath" />
+		<javac srcdir="src" destdir="build/bin" classpath="${library}" classpathref="classpath" />
 	</target>
 	
 
@@ -31,8 +30,8 @@
     </path>
 	
 	<target name="javadoc" depends="prepare">
-		<mkdir dir="${build}/doc"/>
-		<javadoc sourcepath="${src}" access="public" destdir="${build}/doc" packagenames="${person},${pkg1},${pkg2}">
+		<mkdir dir="build/doc"/>
+		<javadoc sourcepath="src" access="public" destdir="build/doc" packagenames="${person},${pkg1},${pkg2}">
 			<classpath>
                 <path refid="classpath"/>
             </classpath>
@@ -43,7 +42,7 @@
 	</target>
 	
 	<target name="jar" depends="compile">
-		<jar destfile="AntLabRun.jar" basedir="${bin}">
+		<jar destfile="AntLabRun.jar" basedir="bin">
 			<manifest>
 				<attribute name="Main-Class" value="edu.gatech.oad.antlab1.pkg.AntLabMain" />
 			</manifest>
@@ -51,13 +50,13 @@
 	</target>
 	
 	<target name="run" depends="jar">
-		<java jar="${jar}/${ant.project.name}.jar" fork="true"/>
+		<java jar="build/jar/${ant.project.name}.jar" fork="true"/>
 	</target>
 	
 	<target name="all" depends="javadoc,run"/>
 	
 	<target name="clean">
-		<delete dir="${build}"/>
+		<delete dir="build"/>
 	</target>
 
 
