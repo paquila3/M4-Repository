@@ -36,11 +36,11 @@ public class Person2 {
 	  }
 	  else{
 		  String dummy=input;
-		  while(dummy!=""){
+		  while(dummy.length() > 0){
 			  Random random = new Random();
-			  int r = random.nextInt(dummy.length()-1);
+			  int r = random.nextInt(dummy.length());
 			  ans=ans+dummy.charAt(r);
-			  dummy=dummy.substring(0, r-1)+dummy.substring(r+1,dummy.length());
+			  dummy=dummy.substring(0, r)+dummy.substring(r+1,dummy.length());
 		  }
 		  return ans;
 	  }
