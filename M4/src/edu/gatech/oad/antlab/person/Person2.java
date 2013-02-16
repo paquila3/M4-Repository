@@ -35,10 +35,19 @@ public class Person2 {
 		  return ans;
 	  }
 	  else{
-		  for(int x=input.length()-1;x>0;x--){
+		  for(int x=input.length()-1;x>=0;x--){
 			  ans=ans+input.charAt(x);
 		  }
-		  return ans;
+		  char[] chars=ans.toCharArray();
+		  char z=chars[0];
+		  char y=chars[input.length()-1];
+		  chars[0]=y;
+		  chars[input.length()-1]=z;
+		  String temp="";
+		  for(int x=input.length()-1;x>=0;x--){
+			  temp=temp+ans.charAt(x);
+		  }
+		  return temp;
 	  }
 	}
 	/**
