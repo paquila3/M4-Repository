@@ -21,7 +21,7 @@
 	</target>	
 	
 	<target name="compile" depends="prepare">
-		<javac srcdir="src" destdir="build/bin" classpath="${library}" classpathref="classpath" />
+		<javac includeantruntime="false" srcdir="src" destdir="build/bin" classpath="${library}" classpathref="classpath" />
 	</target>
 	
 
@@ -42,15 +42,20 @@
 	</target>
 	
 	<target name="jar" depends="compile">
-		<jar destfile="AntLabRun.jar" basedir="build/bin">
+		<jar destfile="build/jar/AntLabRun.jar" basedir="build/bin">
 			<manifest>
-				<attribute name="Main-Class" value="edu.gatech.oad.antlab1.pkg.AntLabMain" />
+				<attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain" />
 			</manifest>
 		</jar>
 	</target>
 	
 	<target name="run" depends="jar">
-		<java jar="build/jar/${ant.project.name}.jar" fork="true"/>
+		<java fork="true" classname="edu.gatech.oad.antlab.pkg1.AntLabMain">
+            <classpath>
+                <path refid="classpath"/>
+                <path location="build/jar/AntLabRun.jar"/>
+            </classpath>
+        </java>
 	</target>
 	
 	<target name="all" depends="javadoc,run"/>
