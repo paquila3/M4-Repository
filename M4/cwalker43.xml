@@ -36,7 +36,7 @@
 	</target>
 
 	<target name="jar" depends="compile">
-		<mkdir dir="$build/jar"/>
+		<mkdir dir="build/jar"/>
 		<jar destfile="build/jar/M4.jar" basedir="build/classes">
 			<manifest>
 				<attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>
