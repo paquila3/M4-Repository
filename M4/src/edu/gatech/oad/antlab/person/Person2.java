@@ -1,5 +1,5 @@
 package edu.gatech.oad.antlab.person;
-
+import java.util.Random;
 /**
  *  A simple class for person 2
  *  returns their name and a
@@ -35,19 +35,14 @@ public class Person2 {
 		  return ans;
 	  }
 	  else{
-		  for(int x=input.length()-1;x>=0;x--){
-			  ans=ans+input.charAt(x);
+		  String dummy=input;
+		  while(dummy!=""){
+			  Random random = new Random();
+			  int r = random.nextInt(dummy.length()-1);
+			  ans=ans+dummy.charAt(r);
+			  dummy=dummy.substring(0, r-1)+dummy.substring(r+1,dummy.length());
 		  }
-		  char[] chars=ans.toCharArray();
-		  char z=chars[0];
-		  char y=chars[input.length()-1];
-		  chars[0]=y;
-		  chars[input.length()-1]=z;
-		  String temp="";
-		  for(int x=input.length()-1;x>=0;x--){
-			  temp=temp+ans.charAt(x);
-		  }
-		  return temp;
+		  return ans;
 	  }
 	}
 	/**
