@@ -42,7 +42,7 @@
 	</target>
 	
 	<target name="jar" depends="compile">
-		<jar destfile="AntLabRun.jar" basedir="bin">
+		<jar destfile="AntLabRun.jar" basedir="build/bin">
 			<manifest>
 				<attribute name="Main-Class" value="edu.gatech.oad.antlab1.pkg.AntLabMain" />
 			</manifest>
