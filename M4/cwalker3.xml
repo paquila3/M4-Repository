@@ -43,7 +43,7 @@
 			</manifest>
 		</jar>
 	</target>
-	
+	 
 	<target name="run" depends="jar">
 		<java jar="build/jar/M4" fork="true"/>
 	</target>
