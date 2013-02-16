@@ -1,0 +1,58 @@
+<project name="M4" default="all" basedir=".">
+	<target name="init">
+		<property name="person.pkg" value="src/edu.gatech.oad.antlab.person" />
+		<property name="pkg1.pkg" value="src/edu.gatech.oad.antlab.pkg1" />
+		<property name="pkg2.pkg" value="src/edu.gatech.oad.antlab.pkg2" />
+	</target>	
+	<target name="clean">
+		<delete dir="build"/>
+	</target>
+
+	<target name="prepare">
+		<mkdir dir="build" />
+	</target>
+	
+	<path id="classpath">
+        <fileset dir="lib" includes="**/*.jar"/>
+    </path>
+	
+	<target name="compile" depends="prepare">
+		<mkdir dir="build/classes"/>
+        <javac includeantruntime="flase" srcdir="src" destdir="build/classes"/>
+	</target>
+	
+	<target name="javadoc">
+		<mkdir dir="docs" />
+		<mkdir dir="docs/javadoc" />
+		<javadoc sourcepath="src" access="public" destdir="docs/javadoc"
+		packagenames="${person.pkg}, ${pkg1.pkg}, ${pkg2.pkg}">
+			<classpath>
+                <path refid="classpath"/>
+            </classpath>
+			<fileset dir="src">
+				<include name="**/*.java" />
+			</fileset>
+		</javadoc>   
+	</target>
+
+	<target name="jar" depends="compile">
+		<mkdir dir="build/jar"/>
+		<jar destfile="build/jar/M4.jar" basedir="build/classes">
+			<manifest>
+				<attribute name="Main-Class" value="edu.gatech.oad.antlab.pkg1.AntLabMain"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="run" depends="jar">
+		<java fork="true" classname="edu.gatech.oad.antlab.pkg1.AntLabMain">
+            <classpath>
+                <path refid="classpath"/>
+                <path location="build/jar/M4.jar"/>
+            </classpath>
+        </java>
+	</target>
+	
+	<target name="all" depends="javadoc, compile, run" />
+	
+</project>
