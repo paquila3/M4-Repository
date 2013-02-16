@@ -33,7 +33,8 @@ public class Person4 {
       String tempString1 = "";
       String tempString2 = "";
       int i = 0;
-      for (char c: input){
+      char[] input2= input.toCharArray();
+      for (char c: input2){
     	  if (i == 1) {
     		  tempString1 += c;
     	  }
